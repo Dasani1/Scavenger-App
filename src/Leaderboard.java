@@ -1,16 +1,14 @@
-package src.leaderboard;
-
-import java.util.Arrays;
+package src;
 
 public class Leaderboard {
     public static void main(String[] args) {
         // Sample users
         User[] users = new User[5];
-        users[0] = new User("player1", 120);
-        users[1] = new User("player2", 300);
-        users[2] = new User("player3", 220);
-        users[3] = new User("player4", 150);
-        users[4] = new User("player5", 180);
+        users[0] = new User("Silly Billy", 120);
+        users[1] = new User("John Doe", 300);
+        users[2] = new User("John Pork", 220);
+        users[3] = new User("Travis Scott", 150);
+        users[4] = new User("IShowSpeed", 180);
 
         // Sort users by score using insertion sort
         insertionSort(users);

@@ -1,20 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Java Web App</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>GrassQuest Leaderboard</title>
+    <link rel="stylesheet" href="/design.css">
 </head>
 <body>
-    <h1>Pure Java Web Server</h1>
-    <button onclick="fetchData()">Call Java Backend</button>
-    <p id="response"></p>
+    <header class="header">
+        <h1>GrassQuest</h1>
+    </header>
+    
+    <main class="content">
+        <h2>Leaderboard</h2>
+        <button onclick="loadLeaderboard()">Load Leaderboard</button>
+        <div id="leaderboard-container"></div>
+    </main>
+    
+    <footer class="footer">
+        <p>GrassQuest (again)</p>
+    </footer>
 
     <script>
-        function fetchData() {
-            fetch("/api/hello")
-                .then(res => res.text())
-                .then(data => {
-                    document.getElementById("response").innerText = data;
+        function loadLeaderboard() {
+            fetch("/api/leaderboard")
+                .then(response => response.json())
+                .then(users => {
+                    let html = `
+                        <table id="leaderboard">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Player</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+                    
+                    users.forEach((user, index) => {
+                        html += `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${user.username}</td>
+                                <td>${user.score}</td>
+                            </tr>
+                        `;
+                    });
+                    
+                    html += `</tbody></table>`;
+                    document.getElementById("leaderboard-container").innerHTML = html;
+                })
+                .catch(error => {
+                    document.getElementById("leaderboard-container").innerHTML = 
+                        "<p>Error loading leaderboard. Please try again.</p>";
+                    console.error("Error:", error);
                 });
         }
     </script>
