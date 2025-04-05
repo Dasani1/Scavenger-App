@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Java Web App</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Pure Java Web Server</h1>
+    <button onclick="fetchData()">Call Java Backend</button>
+    <p id="response"></p>
+
+    <script>
+        function fetchData() {
+            fetch("/api/hello")
+                .then(res => res.text())
+                .then(data => {
+                    document.getElementById("response").innerText = data;
+                });
+        }
+    </script>
+</body>
+</html>

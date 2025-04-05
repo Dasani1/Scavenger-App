@@ -1,0 +1,6 @@
+simple-java-web/
+├── src/
+│   ├── App.java          (Java backend)
+│   └── public/           (HTML/CSS frontend)
+│       ├── index.html
+│       └── style.css
