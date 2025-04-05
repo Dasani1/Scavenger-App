@@ -7,14 +7,17 @@ public class CompareTags{
     ArrayList <String> compareTags;
     ArrayList <String> allTags = new ArrayList<String> ();
     int sameTags;
+    int fileNum;
 
-    public CompareTags(ArrayList <String> comp){
+    public CompareTags(ArrayList <String> comp, int num){
         compareTags = comp;
+        fileNum = num;
     }
 
     public void readFile(){
         try{
-            BufferedReader s = new BufferedReader(new FileReader("Tags.txt"));
+            String [] files = {"Tags.txt", "Tags2.txt", "Tags3.txt"};
+            BufferedReader s = new BufferedReader(new FileReader(files[fileNum - 1]));
             String line;
             while ((line = s.readLine()) != null) {
                 allTags.add(line);
